@@ -47,41 +47,37 @@ def balance_data(x, y):
 
 
 def log_wandb(arguments):
-    labels = arguments['--labels'].split('.')[0]
-    task_type = labels.split('/')[-1]
+    labels = arguments['--labels'].split('/')[-1]
+    task_type = arguments['--task']
 
     task = arguments['--task']
-    if task != 'task':
-        task_type = task
+    task_type = task
     if task in ['word_ind', 'sen_len']:
         classification_type = 'regression'
     else:
         classification_type = 'classification'
 
-    data_orig = labels.split('data/')[1].split('/')[0]
     print(labels)
-    print(data_orig)
-    dataset = data_orig.split('_output', 1)[0]
-    masking = data_orig.rsplit('_', 1)[1]
+    dataset = arguments['--labels'].split('/')[-2]
 
-    layer_str = arguments['--vecs'].split('/')[-1].rsplit('.', maxsplit=1)[0]
-    if 'layer' in layer_str:
-        layer = str(layer_str.split(':')[1])
-    else:
-        layer = 'last'
-
+    "sec_00_sentences.txt_bert-base-uncased_word_pos.pickle"
+    #layer_str = arguments['--vecs'].split('/')[-1].rsplit('.', maxsplit=1)[0]
+    #if 'layer' in layer_str:
+    #    layer = str(layer_str.split(':')[1])
+    #else:
+    #    layer = 'last'
+    layer = 'all'
     config = dict(
         property=task_type,
         encoder='bert-base-uncased',
         dataset=dataset,
-        masking=masking,
         layer=layer
     )
 
     wandb.init(
         name=task_type + f'_{layer}_inlp',
         project="amnesic_probing",
-        tags=["inlp", task_type, classification_type],
+        tags=["inlp", classification_type],
         config=config,
     )
 
@@ -102,14 +98,14 @@ if __name__ == '__main__':
 
     in_dim = int(arguments['--input_dim'])
 
-    sentence_file = arguments['--vecs'].rsplit('/', 1)[0] + '/' + 'tokens.pickle'
+    sentence_file = arguments['--vecs'].replace('_bert-base-uncased_word_pos.pickle','')
 
     vecs_train, labels_train, sentences_train = read_files(arguments['--vecs'], arguments['--labels'],
                                                            sentence_file,
                                                            ignore_special_tokens=True)
-    vecs_dev, labels_dev, sentences_dev = read_files(arguments['--vecs'].replace('train', 'dev'),
-                                                     arguments['--labels'].replace('train', 'dev'),
-                                                     sentence_file.replace('train', 'dev'),
+    vecs_dev, labels_dev, sentences_dev = read_files(arguments['--vecs'].replace('00', '01'),
+                                                     arguments['--labels'].replace('00', '01'),
+                                                     sentence_file.replace('00', '01'),
                                                      ignore_special_tokens=True)
 
     print('#sentences', len(vecs_train))

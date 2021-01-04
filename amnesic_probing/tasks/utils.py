@@ -112,17 +112,35 @@ def learn_pls_cls(x_train, y_train, x_dev, y_dev):
 
 
 def read_files(vec_f, label_f, text_f=None, ignore_special_tokens=False):
-    vecs = np.load(vec_f, allow_pickle=True)
+    #vecs = np.load(vec_f, allow_pickle=True)
+    vecs = pickle.load(open(vec_f, 'rb'))
 
     if ignore_special_tokens:
         vecs = np.array([x[1:-1] for x in vecs])
 
-    with open(label_f, 'rb') as f:
-        labels = pickle.load(f)
+    #flatten layers
+    vecs = np.concatenate(vecs, axis=1)
+
+    #with open(label_f, 'rb') as f:
+    #    labels = pickle.load(f)
+
+    #get labels
+    labels = []
+    lines = open(label_f, "r").readlines()
+    for line in lines:
+        if line.strip():
+            word, tag = line.split(' ')
+            labels.append(tag)
 
     if text_f:
-        with open(text_f, 'rb') as f:
-            sentences = pickle.load(f)
+        #with open(text_f, 'rb') as f:
+            #sentences = pickle.load(f)
+        sentences = []
+        lines = open(text_f, "r").readlines()
+        for line in lines:
+            if line.strip():
+                sentences.append(line)
+
     else:
         sentences = None
 
