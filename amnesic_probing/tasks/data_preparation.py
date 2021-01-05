@@ -3,20 +3,24 @@ import numpy as np
 percentiles_list = [50]
 
 
-def create_labeled_data(vecs, labels_seq, pos2i=None):
+def create_labeled_data(vecs, labels, pos2i=None):
     x = []
     y = []
-
+    print(len(labels), " len(labels)")
     if not pos2i:
         # using `sorted` function to make this process deterministic
-        pos2i = {p: i for i, p in enumerate(sorted(set([item for sublist in labels_seq for item in sublist])))}
-
-    for label, vec in zip(labels_seq, vecs):
-        for l, v in zip(label, vec):
-            x.append(v)
-            y.append(pos2i[l])
-
-    return np.array(x), np.array(y), pos2i
+        pos2i = {p: i for i, p in enumerate(sorted(set([item.replace('\n','') for item in labels])))}
+        print(pos2i)
+    for label in labels:
+            #x.append(v)
+            try:
+                y.append(pos2i[label])
+            except:
+                pos2i[label] = int(list(pos2i.values())[-1]) + 1
+                y.append(pos2i[label])
+                print(pos2i)
+    print(np.array(y).shape, ": np.array(y).shape")
+    return vecs, np.array(y), pos2i
 
 
 def create_subword_data(vecs, sentences_seq):

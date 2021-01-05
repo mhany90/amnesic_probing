@@ -1,0 +1,38 @@
+{
+    "os": "Linux-3.10.0-1127.10.1.el7.x86_64-x86_64-with-redhat-7.8-Maipo",
+    "python": "3.6.8",
+    "heartbeatAt": "2021-01-05T11:02:54.139438",
+    "startedAt": "2021-01-05T11:02:52.478077",
+    "docker": null,
+    "cpu_count": 40,
+    "cuda": null,
+    "args": [
+        "--vecs",
+        "../mtl-cnn/acl16-data/wsj/pos/sec_00_sentences.txt_bert-base-uncased_word_pos.pickle",
+        "--labels",
+        "../mtl-cnn/acl16-data/wsj/pos/sec_00",
+        "--out_dir",
+        "out_pos",
+        "--n_cls",
+        "1",
+        "--task",
+        "task",
+        "--input_dim",
+        "768",
+        "--n",
+        "30000",
+        "--wandb"
+    ],
+    "state": "running",
+    "codePath": "amnesic_probing/tasks/remove_property.py",
+    "program": "amnesic_probing/tasks/remove_property.py",
+    "git": {
+        "remote": "https://github.com/mhany90/amnesic_probing.git",
+        "commit": "9d9686b911b7130947f05158c63e243bcc8c088b"
+    },
+    "email": null,
+    "root": "/home/vqc439/amnesic_probing",
+    "host": "a00551.science.domain",
+    "username": "vqc439",
+    "executable": "/home/vqc439/miniconda3/envs/p3/bin/python"
+}

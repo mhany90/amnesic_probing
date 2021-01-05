@@ -119,7 +119,8 @@ def read_files(vec_f, label_f, text_f=None, ignore_special_tokens=False):
         vecs = np.array([x[1:-1] for x in vecs])
 
     #flatten layers
-    vecs = np.concatenate(vecs, axis=1)
+    vecs = vecs[-1, :] 
+    #vecs = np.concatenate(vecs, axis=1)
 
     #with open(label_f, 'rb') as f:
     #    labels = pickle.load(f)
@@ -130,7 +131,7 @@ def read_files(vec_f, label_f, text_f=None, ignore_special_tokens=False):
     for line in lines:
         if line.strip():
             word, tag = line.split(' ')
-            labels.append(tag)
+            labels.append(tag.replace('\n', ''))
 
     if text_f:
         #with open(text_f, 'rb') as f:

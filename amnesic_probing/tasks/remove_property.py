@@ -102,18 +102,28 @@ if __name__ == '__main__':
 
     vecs_train, labels_train, sentences_train = read_files(arguments['--vecs'], arguments['--labels'],
                                                            sentence_file,
-                                                           ignore_special_tokens=True)
+                                                           ignore_special_tokens=False)
+    print(vecs_train.shape, ": vecs_train.shape")
     vecs_dev, labels_dev, sentences_dev = read_files(arguments['--vecs'].replace('00', '01'),
                                                      arguments['--labels'].replace('00', '01'),
                                                      sentence_file.replace('00', '01'),
-                                                     ignore_special_tokens=True)
+                                                     ignore_special_tokens=False)
 
     print('#sentences', len(vecs_train))
-
     task = arguments['--task']
 
-    (x_train, y_train, _), (x_dev, y_dev, _) = get_appropriate_data(task, vecs_train, labels_train, sentences_train,
+    #remove infreq labels
+    cap_frequency = 2
+    labels_train_counts = Counter(labels_train)
+    labels_train_filtered = [word if labels_train_counts[word] > cap_frequency else 'infreq' for word in labels_train]
+
+    (x_train, y_train, _), (x_dev, y_dev, _) = get_appropriate_data(task, vecs_train, labels_train_filtered, sentences_train,
                                                                     vecs_dev, labels_dev, sentences_dev)
+
+    print(x_train.shape, " :x_train.shape")
+    print(y_train.shape, " :y_train.shape")
+    print(x_dev.shape, " :x_dev.shape")
+    print(y_dev.shape, " :y_dev.shape")
 
     if bool(arguments['--balance_data'] == 'true'):
         x_train, y_train = balance_data(x_train, y_train)
