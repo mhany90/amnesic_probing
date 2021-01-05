@@ -1,21 +1,0 @@
-(46451, 9984) : vecs_train.shape
-#sentences 46451
-46451  len(labels)
-{'$': 0, "''": 1, '(': 2, ')': 3, ',': 4, '.': 5, ':': 6, 'CC': 7, 'CD': 8, 'DT': 9, 'EX': 10, 'IN': 11, 'JJ': 12, 'JJR': 13, 'JJS': 14, 'LS': 15, 'MD': 16, 'NN': 17, 'NNP': 18, 'NNPS': 19, 'NNS': 20, 'PDT': 21, 'POS': 22, 'PRP': 23, 'PRP$': 24, 'RB': 25, 'RBR': 26, 'RBS': 27, 'RP': 28, 'TO': 29, 'VB': 30, 'VBD': 31, 'VBG': 32, 'VBN': 33, 'VBP': 34, 'VBZ': 35, 'WDT': 36, 'WP': 37, 'WP$': 38, 'WRB': 39, '``': 40, 'infreq': 41}
-(46451,) : np.array(y).shape
-47633  len(labels)
-{'$': 0, "''": 1, '(': 2, ')': 3, ',': 4, '.': 5, ':': 6, 'CC': 7, 'CD': 8, 'DT': 9, 'EX': 10, 'IN': 11, 'JJ': 12, 'JJR': 13, 'JJS': 14, 'LS': 15, 'MD': 16, 'NN': 17, 'NNP': 18, 'NNPS': 19, 'NNS': 20, 'PDT': 21, 'POS': 22, 'PRP': 23, 'PRP$': 24, 'RB': 25, 'RBR': 26, 'RBS': 27, 'RP': 28, 'TO': 29, 'VB': 30, 'VBD': 31, 'VBG': 32, 'VBN': 33, 'VBP': 34, 'VBZ': 35, 'WDT': 36, 'WP': 37, 'WP$': 38, 'WRB': 39, '``': 40, 'infreq': 41, 'FW': 42}
-{'$': 0, "''": 1, '(': 2, ')': 3, ',': 4, '.': 5, ':': 6, 'CC': 7, 'CD': 8, 'DT': 9, 'EX': 10, 'IN': 11, 'JJ': 12, 'JJR': 13, 'JJS': 14, 'LS': 15, 'MD': 16, 'NN': 17, 'NNP': 18, 'NNPS': 19, 'NNS': 20, 'PDT': 21, 'POS': 22, 'PRP': 23, 'PRP$': 24, 'RB': 25, 'RBR': 26, 'RBS': 27, 'RP': 28, 'TO': 29, 'VB': 30, 'VBD': 31, 'VBG': 32, 'VBN': 33, 'VBP': 34, 'VBZ': 35, 'WDT': 36, 'WP': 37, 'WP$': 38, 'WRB': 39, '``': 40, 'infreq': 41, 'FW': 42, 'UH': 43}
-{'$': 0, "''": 1, '(': 2, ')': 3, ',': 4, '.': 5, ':': 6, 'CC': 7, 'CD': 8, 'DT': 9, 'EX': 10, 'IN': 11, 'JJ': 12, 'JJR': 13, 'JJS': 14, 'LS': 15, 'MD': 16, 'NN': 17, 'NNP': 18, 'NNPS': 19, 'NNS': 20, 'PDT': 21, 'POS': 22, 'PRP': 23, 'PRP$': 24, 'RB': 25, 'RBR': 26, 'RBS': 27, 'RP': 28, 'TO': 29, 'VB': 30, 'VBD': 31, 'VBG': 32, 'VBN': 33, 'VBP': 34, 'VBZ': 35, 'WDT': 36, 'WP': 37, 'WP$': 38, 'WRB': 39, '``': 40, 'infreq': 41, 'FW': 42, 'UH': 43, '#': 44}
-(47633,) : np.array(y).shape
-(46451, 9984)  :x_train.shape
-(46451,)  :y_train.shape
-(47633, 9984)  :x_dev.shape
-(47633,)  :y_dev.shape
-number of classes: 42
-most common class (dev): 0.147691726324187
-using 30000 training examples
-  0%|          | 0/1 [00:00<?, ?it/s]iteration: 0, accuracy: 0.8788235047131191:   0%|          | 0/1 [01:44<?, ?it/s]iteration: 0, accuracy: 0.8788235047131191: 100%|██████████| 1/1 [11:31<00:00, 691.64s/it]iteration: 0, accuracy: 0.8788235047131191: 100%|██████████| 1/1 [11:31<00:00, 691.64s/it]
-projection saved timestamp: 1
-using all of the iterations as the final projection
-done iterations. exiting...
