@@ -60,7 +60,6 @@ def log_wandb(arguments):
     print(labels)
     dataset = arguments['--labels'].split('/')[-2]
 
-    "sec_00_sentences.txt_bert-base-uncased_word_pos.pickle"
     #layer_str = arguments['--vecs'].split('/')[-1].rsplit('.', maxsplit=1)[0]
     #if 'layer' in layer_str:
     #    layer = str(layer_str.split(':')[1])
@@ -98,15 +97,15 @@ if __name__ == '__main__':
 
     in_dim = int(arguments['--input_dim'])
 
-    sentence_file = arguments['--vecs'].replace('_bert-base-uncased_word_pos.pickle','')
+    sentence_file = arguments['--vecs'].replace('vecs.pickle','sentences.txt')
 
     vecs_train, labels_train, sentences_train = read_files(arguments['--vecs'], arguments['--labels'],
                                                            sentence_file,
                                                            ignore_special_tokens=False)
     print(vecs_train.shape, ": vecs_train.shape")
-    vecs_dev, labels_dev, sentences_dev = read_files(arguments['--vecs'].replace('00', '01'),
-                                                     arguments['--labels'].replace('00', '01'),
-                                                     sentence_file.replace('00', '01'),
+    vecs_dev, labels_dev, sentences_dev = read_files(arguments['--vecs'].replace('train', 'dev'),
+                                                     arguments['--labels'].replace('train', 'dev'),
+                                                     sentence_file.replace('train', 'dev'),
                                                      ignore_special_tokens=False)
 
     print('#sentences', len(vecs_train))
